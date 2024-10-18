@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/userGreetingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, User!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/guessInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Guess the word"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/randomNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your random word will appear here"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/generateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate Random Word"
+        android:layout_marginTop="16dp"/>
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Guess"
+        android:layout_marginTop="16dp"/>
+    <TextView
+        android:id="@+id/marksTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attempts: 0/10"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
+    <EditText
+        android:id="@+id/letterInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter a letter"
+        android:maxLength="1"
+        android:inputType="text"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/checkLetterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Letter"
+        android:layout_marginTop="8dp" />
+    <Button
+        android:id="@+id/checkWordLengthButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Word Length"
+        android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timer: "
+        android:layout_marginTop="8dp" />
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"/>
+
+</LinearLayout>
