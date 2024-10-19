@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.madguessapp.network.ApiService
 import kotlinx.coroutines.CoroutineScope
@@ -25,12 +26,15 @@ class NameGeneratorActivity : AppCompatActivity() {
     private lateinit var checkLetterButton: Button
     private lateinit var leaderboardButton: Button
     private lateinit var letterInput: EditText
+    private lateinit var hintTextview: TextView
     private lateinit var checkWordLengthButton: Button
     private lateinit var logoutButton: Button
     private lateinit var timerTextView: TextView
     private var randomWord: String? = null
     private lateinit var checkButton: Button
     private lateinit var marksTextView: TextView
+    private lateinit var showNameTextView: TextView
+    private lateinit var showHintTextView: TextView
     private var marks: Int = 100
     private val failCost: Int = 10
     private val letterCost: Int = 5
@@ -56,6 +60,7 @@ class NameGeneratorActivity : AppCompatActivity() {
         letterInput = findViewById(R.id.letterInput)
         checkWordLengthButton = findViewById(R.id.checkWordLengthButton)
         timerTextView = findViewById(R.id.timerTextView)
+        hintTextview = findViewById(R.id.hintText)
 
         userGreetingTextView.text = "Hello, $userName!"
 
@@ -102,7 +107,7 @@ class NameGeneratorActivity : AppCompatActivity() {
             randomWord = ApiService.getRandomName()
             withContext(Dispatchers.Main) {
                 if (randomWord != null) {
-                    randomNameTextView.text = "Hello, $userName! Your random word is: $randomWord"
+                    randomNameTextView.text = "$randomWord"
                     guessInput.setText("") // Clear the input field after generating a new word
                     marks = 100
                     guessInput.isEnabled = true
@@ -125,7 +130,7 @@ class NameGeneratorActivity : AppCompatActivity() {
             if (userGuess.equals(randomWord, ignoreCase = true)) {
                 endTime = System.currentTimeMillis()
                 val timeTaken = (endTime - startTime) / 1000
-                randomNameTextView.text = "Correct! The word was: $randomWord"
+                hintTextview.text = "Correct! The word was: $randomWord"
                 marksTextView.text = "You guessed it! Final marks: $marks"
                 timerTextView.text = "Time taken: $timeTaken seconds"
                 onCorrectGuess()
@@ -133,11 +138,11 @@ class NameGeneratorActivity : AppCompatActivity() {
                 marks -= failCost // Deduct marks
                 marksTextView.text = "Marks: $marks" // Update marks display
                 if (marks <= 0) {
-                    randomNameTextView.text = "Game Over! The word was: $randomWord"
+                    hintTextview.text = "Game Over! The word was: $randomWord"
                     guessInput.isEnabled = false // Disable input
                     checkButton.isEnabled = false // Disable check button
                 } else {
-                    randomNameTextView.text = "Wrong! Try again."
+                    hintTextview.text = "Wrong! Try again."
                 }
             }
         }

@@ -8,14 +8,14 @@ import retrofit2.http.Path
 
 interface LeaderboardApiService {
 
-    @GET("add/{userName}/{score}/{time}")
+    @GET("3nPdw8GvDk2w3s_Mhn0WWwvC0i2elQFkWXYzhQ9ATc7Q/add/{userName}/{score}/{time}")
     suspend fun submitScore(
         @Path("userName") userName: String,
         @Path("score") score: Int,
         @Path("time") time: String
     ): Response<Void>
 
-    @GET("json-seconds-asc")
+    @GET("671384b18f40bc122c27934d/json-seconds-asc")
     suspend fun fetchLeaderboard(): Response<LeaderboardResponse>
 
 
