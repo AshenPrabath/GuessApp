@@ -67,9 +67,12 @@ class NameGeneratorActivity : AppCompatActivity() {
         userGreetingTextView.text = "Hello, $userName!"
 
         generateRandomName()
+        buttonDisableChecker()
 
         generateButton.setOnClickListener {
             generateRandomName()
+            hintTextview.text = "Enter your guess"
+
         }
         checkButton.setOnClickListener {
             checkGuess()
@@ -85,17 +88,17 @@ class NameGeneratorActivity : AppCompatActivity() {
                 if (guessedLetter.length == 1) {
                     checkLetter(guessedLetter[0])
                 } else {
-                    randomNameTextView.text = "Please enter a single letter."
+                    hintTextview.text = "Please enter a single letter."
                 }
             } else {
-                randomNameTextView.text = "Not enough marks to check a letter!"
+                hintTextview.text = "Not enough marks to check a letter!"
             }
         }
         checkWordLengthButton.setOnClickListener {
             if (marks >= letterCost) {
                 checkWordLength()
             } else {
-                randomNameTextView.text = "Not enough marks to check word length!"
+                hintTextview.text = "Not enough marks to check word length!"
             }
         }
         logoutButton.setOnClickListener {
@@ -115,7 +118,8 @@ class NameGeneratorActivity : AppCompatActivity() {
                     checkButton.isEnabled = true
                     checkLetterButton.isEnabled = true
                     checkWordLengthButton.isEnabled = true
-                    marksTextView.text = "Marks: $marks"
+                    letterInput.isEnabled = true
+                    marksTextView.text = "Remaining Marks: $marks"
                     startTime = System.currentTimeMillis()
                     timerTextView.text = "Timer started!"
                 } else {
@@ -141,7 +145,7 @@ class NameGeneratorActivity : AppCompatActivity() {
                 if (marks <= 0) {
                     hintTextview.text = "Game Over! The word was: $randomWord"
                     guessInput.isEnabled = false
-                    checkButton.isEnabled = false
+                    buttonDisableChecker()
                 } else {
                     hintTextview.text = "Wrong! Try again."
                 }
@@ -154,15 +158,14 @@ class NameGeneratorActivity : AppCompatActivity() {
         marksTextView.text = "Marks: $marks"
 
         if (marks <= 0) {
-            randomNameTextView.text = "Game Over! The word was: $randomWord"
+            hintTextview.text = "Game Over! The word was: $randomWord"
             guessInput.isEnabled = false
-            checkButton.isEnabled = false
-            checkLetterButton.isEnabled = false
+            buttonDisableChecker()
         } else {
             if (occurrences > 0) {
-                randomNameTextView.text = "The letter '$letter' appears $occurrences times."
+                hintTextview.text = "The letter '$letter' appears $occurrences times."
             } else {
-                randomNameTextView.text = "The letter '$letter' is not in the word."
+                hintTextview.text = "The letter '$letter' is not in the word."
             }
         }
     }
@@ -172,13 +175,11 @@ class NameGeneratorActivity : AppCompatActivity() {
         marksTextView.text = "Marks: $marks"
 
         if (marks <= 0) {
-            randomNameTextView.text = "Game Over! The word was: $randomWord"
+            hintTextview.text = "Game Over! The word was: $randomWord"
             guessInput.isEnabled = false
-            checkButton.isEnabled = false
-            checkLetterButton.isEnabled = false
-            checkWordLengthButton.isEnabled = false
+            buttonDisableChecker()
         } else {
-            randomNameTextView.text = "The secret word has $wordLength letters."
+            hintTextview.text = "The secret word has $wordLength letters."
         }
     }
     private fun onCorrectGuess() {
@@ -201,6 +202,15 @@ class NameGeneratorActivity : AppCompatActivity() {
                 }
                 e.printStackTrace()
             }
+        }
+    }
+    private fun buttonDisableChecker(){
+        if (marks === 0) {
+            checkButton.isEnabled = false
+            checkLetterButton.isEnabled = false
+            checkWordLengthButton.isEnabled = false
+            letterInput.isEnabled = false
+
         }
     }
     private fun logout() {
