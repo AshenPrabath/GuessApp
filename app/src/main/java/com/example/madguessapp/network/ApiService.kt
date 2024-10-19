@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiService {
     private const val NAME_BASE_URL = "https://random-word-api.herokuapp.com/"
-    private const val LEADERBOARD_BASE_URL = "http://dreamlo.com/lb/" // Use this for both submission and fetching
+    private const val LEADERBOARD_BASE_URL = "http://dreamlo.com/lb/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

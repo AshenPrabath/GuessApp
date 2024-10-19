@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Title for the leaderboard -->
+
     <TextView
         android:id="@+id/leaderboardTextView"
         android:layout_width="match_parent"
@@ -15,13 +15,12 @@
         android:gravity="center"
         android:padding="8dp" />
 
-    <!-- Header row for the leaderboard columns -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:background="#FFDDDDDD"> <!-- Gray background for the header -->
+        android:background="#FFDDDDDD">
 
         <!-- Header for Name -->
         <TextView
@@ -33,7 +32,7 @@
             android:layout_weight="1"
             android:padding="8dp" />
 
-        <!-- Header for Score -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -43,7 +42,7 @@
             android:layout_weight="1"
             android:padding="8dp" />
 
-        <!-- Header for Seconds -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,7 +52,7 @@
             android:layout_weight="1"
             android:padding="8dp" />
 
-        <!-- Header for Date -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -64,12 +63,11 @@
             android:padding="8dp" />
     </LinearLayout>
 
-    <!-- Scrollable container for leaderboard entries -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Vertical LinearLayout to contain each row of entries -->
         <LinearLayout
             android:id="@+id/leaderboardContainer"
             android:layout_width="match_parent"

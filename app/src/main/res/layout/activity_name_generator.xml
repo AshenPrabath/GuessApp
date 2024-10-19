@@ -5,20 +5,16 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- User Greeting -->
     <TextView
         android:id="@+id/userGreetingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello, User!"
-        android:textSize="24sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Random Word Display -->
 
-
-    <!-- Guess Input Field -->
     <EditText
         android:id="@+id/guessInput"
         android:layout_width="match_parent"
@@ -34,15 +30,13 @@
         android:textSize="20sp"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Generate Random Word Button -->
     <Button
         android:id="@+id/generateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Generate Random Word"
+        android:text="Generate New Random Word"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Check Guess Button -->
     <Button
         android:id="@+id/checkButton"
         android:layout_width="match_parent"
@@ -50,7 +44,6 @@
         android:text="Check Guess"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Attempts Display -->
     <TextView
         android:id="@+id/marksTextView"
         android:layout_width="wrap_content"
@@ -58,8 +51,15 @@
         android:text="Attempts: 0/10"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"/>
+    <TextView
+        android:id="@+id/hintsSectionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hints (-5 marks)"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
 
-    <!-- Letter Input Field -->
     <EditText
         android:id="@+id/letterInput"
         android:layout_width="match_parent"
@@ -69,7 +69,6 @@
         android:inputType="text"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Check Letter Button -->
     <Button
         android:id="@+id/checkLetterButton"
         android:layout_width="match_parent"
@@ -77,7 +76,6 @@
         android:text="Check Letter"
         android:layout_marginBottom="8dp"/>
 
-    <!-- Check Word Length Button -->
     <Button
         android:id="@+id/checkWordLengthButton"
         android:layout_width="match_parent"
@@ -85,7 +83,6 @@
         android:text="Check Word Length"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Timer Display -->
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
@@ -93,22 +90,21 @@
         android:text="Timer: "
         android:layout_marginBottom="24dp"/>
 
-    <!-- Spacer to push the buttons to the bottom -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <!-- New Random Word Display Above Leaderboard Button -->
+
     <TextView
         android:id="@+id/randomNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Leaderboard Button -->
+
     <Button
         android:id="@+id/leaderboardButton"
         android:layout_width="match_parent"
@@ -116,7 +112,6 @@
         android:text="View Leaderboard"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Logout Button -->
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"

@@ -31,12 +31,9 @@ class LeaderboardActivity : AppCompatActivity() {
                     if (leaderboard != null) {
                         Toast.makeText(this@LeaderboardActivity, "Fetch successful", Toast.LENGTH_SHORT).show()
 
-                        // Clear previous leaderboard entries
                         leaderboardContainer.removeAllViews()
 
-                        // Loop through each leaderboard entry and add it to the container
                         for (entry in leaderboard) {
-                            // Create a new horizontal LinearLayout (a row)
                             val rowLayout = LinearLayout(this@LeaderboardActivity).apply {
                                 orientation = LinearLayout.HORIZONTAL
                                 layoutParams = LinearLayout.LayoutParams(
@@ -45,19 +42,16 @@ class LeaderboardActivity : AppCompatActivity() {
                                 )
                             }
 
-                            // Create TextViews for name, score, seconds, and date
                             val nameTextView = createTextView(entry.name)
                             val scoreTextView = createTextView(entry.score)
                             val secondsTextView = createTextView(entry.seconds)
                             val dateTextView = createTextView(entry.date)
 
-                            // Add TextViews to the row (horizontal layout)
                             rowLayout.addView(nameTextView)
                             rowLayout.addView(scoreTextView)
                             rowLayout.addView(secondsTextView)
                             rowLayout.addView(dateTextView)
 
-                            // Add the row to the leaderboard container
                             leaderboardContainer.addView(rowLayout)
                         }
                     } else {
@@ -75,13 +69,14 @@ class LeaderboardActivity : AppCompatActivity() {
     private fun createTextView(text: String): TextView {
         return TextView(this).apply {
             layoutParams = LinearLayout.LayoutParams(
-                0,  // 0 width so we can set a weight
-                LinearLayout.LayoutParams.WRAP_CONTENT,  // Wrap content for height
-                1f  // Equal weight for all text fields (acts like table columns)
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
             )
             setText(text)
             textSize = 16f
             setPadding(8, 8, 8, 8)
         }
     }
+
 }
