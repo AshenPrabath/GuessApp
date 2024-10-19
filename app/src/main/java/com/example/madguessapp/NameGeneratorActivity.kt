@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.madguessapp.network.ApiService
 import kotlinx.coroutines.CoroutineScope
@@ -22,6 +23,7 @@ class NameGeneratorActivity : AppCompatActivity() {
     private lateinit var generateButton: Button
     private lateinit var guessInput: EditText
     private lateinit var checkLetterButton: Button
+    private lateinit var leaderboardButton: Button
     private lateinit var letterInput: EditText
     private lateinit var checkWordLengthButton: Button
     private lateinit var logoutButton: Button
@@ -48,6 +50,7 @@ class NameGeneratorActivity : AppCompatActivity() {
         guessInput = findViewById(R.id.guessInput)
         checkButton = findViewById(R.id.checkButton)
         logoutButton = findViewById(R.id.logoutButton)
+        leaderboardButton = findViewById(R.id.leaderboardButton)
         marksTextView = findViewById(R.id.marksTextView)
         checkLetterButton = findViewById(R.id.checkLetterButton)
         letterInput = findViewById(R.id.letterInput)
@@ -63,6 +66,10 @@ class NameGeneratorActivity : AppCompatActivity() {
         }
         checkButton.setOnClickListener {
             checkGuess() // Call the method to check the user's guess
+        }
+        leaderboardButton.setOnClickListener {
+            val intent = Intent(this@NameGeneratorActivity, LeaderboardActivity::class.java)
+            startActivity(intent)
         }
         checkLetterButton.setOnClickListener {
             if (marks >= letterCost) {
@@ -121,6 +128,7 @@ class NameGeneratorActivity : AppCompatActivity() {
                 randomNameTextView.text = "Correct! The word was: $randomWord"
                 marksTextView.text = "You guessed it! Final marks: $marks"
                 timerTextView.text = "Time taken: $timeTaken seconds"
+                onCorrectGuess()
             } else {
                 marks -= failCost // Deduct marks
                 marksTextView.text = "Marks: $marks" // Update marks display
@@ -165,6 +173,30 @@ class NameGeneratorActivity : AppCompatActivity() {
             checkWordLengthButton.isEnabled = false
         } else {
             randomNameTextView.text = "The secret word has $wordLength letters."
+        }
+    }
+    private fun onCorrectGuess() {
+        val timeTaken = (endTime - startTime) / 1000
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // Attempt to submit the score
+                val success = ApiService.submitScore(userName, marks, timeTaken.toString())
+
+                withContext(Dispatchers.Main) {
+                    if (success) {
+                        Toast.makeText(this@NameGeneratorActivity, "Score submitted!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@NameGeneratorActivity, "Failed to submit score", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                // Handle any errors that occurred during the API call
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@NameGeneratorActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+                e.printStackTrace()  // Print the stack trace for debugging
+            }
         }
     }
     private fun logout() {
